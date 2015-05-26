@@ -1,5 +1,11 @@
 package strategy;
 
+import strategy.ducks.DecoyDuck;
+import strategy.ducks.MallardDuck;
+import strategy.ducks.ModelDuck;
+import strategy.ducks.RubberDuck;
+import strategy.fly.FlyRocketPowered;
+
 public class MiniDuckSimulator {
 
     public static void main(String[] args) {
