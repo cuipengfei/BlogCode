@@ -12,13 +12,12 @@ abstract class Duck(f: Fly, q: Quack) {
 
 object Duck {
   type Fly = () => Unit
+  val realFly = () => println("really flying")
+  val canNotFly = () => println("can not fly")
+
   type Quack = () => Unit
-
-  val realFly: Fly = () => println("really flying")
-  val canNotFly: Fly = () => println("can not fly")
-
-  val realQuack: Quack = () => println("really quacking")
-  val muteQuack: Quack = () => println("<<silence>>")
+  val realQuack = () => println("really quacking")
+  val muteQuack = () => println("<<silence>>")
 }
 
 class MallardDuck extends Duck(realFly, realQuack)
