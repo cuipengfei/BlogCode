@@ -1,4 +1,4 @@
-package strategy
+package strategytrait
 
 trait Fly {
   def fly()

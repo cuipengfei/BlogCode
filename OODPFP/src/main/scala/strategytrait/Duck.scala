@@ -1,4 +1,4 @@
-package strategy
+package strategytrait
 
 abstract class Duck extends Fly with Quack {
   def swim = println("all ducks float")
