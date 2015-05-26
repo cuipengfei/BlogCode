@@ -12,17 +12,17 @@ abstract class Duck(f: Fly, q: Quack) {
 
 object Duck {
   type Fly = () => Unit
-  val realFly = () => println("really flying")
-  val canNotFly = () => println("can not fly")
+  val flyWithWings = () => println("fly with wings")
+  val flyNoWay = () => println("can not fly")
 
   type Quack = () => Unit
-  val realQuack = () => println("really quacking")
+  val realQuack = () => println("Quack")
   val muteQuack = () => println("<<silence>>")
 }
 
-class MallardDuck extends Duck(realFly, realQuack)
+class MallardDuck extends Duck(flyWithWings, realQuack)
 
-class DecoyDuck extends Duck(canNotFly, muteQuack)
+class DecoyDuck extends Duck(flyNoWay, muteQuack)
 
 object DuckSimFP {
   def main(args: Array[String]) {

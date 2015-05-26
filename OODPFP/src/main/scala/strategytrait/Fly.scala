@@ -5,7 +5,7 @@ trait Fly {
 }
 
 trait FlyWithWings extends Fly {
-  def fly() = println("flying with wings")
+  def fly() = println("fly with wings")
 }
 
 trait FlyNoWay extends Fly {

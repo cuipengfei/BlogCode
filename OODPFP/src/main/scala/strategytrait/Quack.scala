@@ -5,7 +5,7 @@ trait Quack {
 }
 
 trait RealQuack {
-  def quack() = println("Quak")
+  def quack() = println("Quack")
 }
 
 trait MuteQuack {
