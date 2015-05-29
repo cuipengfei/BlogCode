@@ -18,7 +18,7 @@ object Loggers {
   }
 
   val stdErrLogger: Logger = event => handleEvent(event, ERR) {
-    println(s"Sending to stderr: ${event.message}")
+    System.err.println(s"Sending to stderr: ${event.message}")
   }
 
   private def handleEvent(event: Event, expectedPriority: Int)(handler: => Unit) = {
