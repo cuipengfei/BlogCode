@@ -30,4 +30,15 @@ abstract class Logger {
     }
 
     abstract protected void writeMessage(String msg);
+
+    public static Logger chain(Logger... loggers) {
+        Logger prev = loggers[0];
+        for (Logger logger : loggers) {
+            if (logger != prev) {
+                prev.setNext(logger);
+                prev = logger;
+            }
+        }
+        return loggers[0];
+    }
 }

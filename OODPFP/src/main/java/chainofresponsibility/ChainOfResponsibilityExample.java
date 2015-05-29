@@ -3,17 +3,10 @@ package chainofresponsibility;
 public class ChainOfResponsibilityExample {
 
     private static Logger createChain() {
-        // Build the chain of responsibility
-
-        Logger logger = new StdoutLogger(Logger.DEBUG);
-
-        Logger logger1 = new EmailLogger(Logger.NOTICE);
-        logger.setNext(logger1);
-
-        Logger logger2 = new StderrLogger(Logger.ERR);
-        logger1.setNext(logger2);
-
-        return logger;
+        return Logger.chain(
+                new StdoutLogger(Logger.DEBUG),
+                new EmailLogger(Logger.NOTICE),
+                new StderrLogger(Logger.ERR));
     }
 
     public static void main(String[] args) {
