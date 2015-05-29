@@ -1,5 +1,8 @@
 package chainofresponsibility;
 
+/**
+ * Created by pfcui on 5/29/15.
+ */
 class EmailLogger extends Logger {
     public EmailLogger(int mask) {
         super(mask);

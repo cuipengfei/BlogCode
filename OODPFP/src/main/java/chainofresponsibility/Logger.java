@@ -1,12 +1,15 @@
 package chainofresponsibility;
 
+/**
+ * Created by pfcui on 5/29/15.
+ */
 abstract class Logger {
     public static int ERR = 3;
     public static int NOTICE = 5;
     public static int DEBUG = 7;
-
     private int mask;
 
+    // The next element in the chain of responsibility
     private Logger next;
 
     public Logger(int mask) {
@@ -27,15 +30,4 @@ abstract class Logger {
     }
 
     abstract protected void writeMessage(String msg);
-
-    public static Logger chain(Logger... loggers) {
-        Logger prev = loggers[0];
-        for (Logger logger : loggers) {
-            if (logger != prev) {
-                prev.setNext(logger);
-                prev = logger;
-            }
-        }
-        return loggers[0];
-    }
 }
