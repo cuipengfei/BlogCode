@@ -14,20 +14,22 @@ object Chain {
     }
   }
 
-  val stdOutLogger: Logger = (event) =>
+  val stdOutLogger: Logger = event =>
     event.doIfMatch(DEBUG, println(s"Writing to stdout: ${event.message}"))
 
-  val emailLogger: Logger = (event) =>
+  val emailLogger: Logger = event =>
     event.doIfMatch(NOTICE, println(s"Sending via e-mail: ${event.message}"))
 
-  val stdErrLogger: Logger = (event) =>
+  val stdErrLogger: Logger = event =>
     event.doIfMatch(ERR, println(s"Sending to stderr: ${event.message}"))
 
   def main(args: Array[String]) {
-    val chainedLoggers = stdOutLogger.andThen(emailLogger).andThen(stdErrLogger)
+    val chain = stdOutLogger
+      .andThen(emailLogger)
+      .andThen(stdErrLogger)
 
-    chainedLoggers(LogEvent("Entering function y.", DEBUG))
-    chainedLoggers(LogEvent("Step1 completed.", NOTICE))
-    chainedLoggers(LogEvent("An error has occurred.", ERR))
+    chain(LogEvent("Entering function y.", DEBUG))
+    chain(LogEvent("Step1 completed.", NOTICE))
+    chain(LogEvent("An error has occurred.", ERR))
   }
 }
