@@ -32,9 +32,7 @@ object ChainRunner {
   import chain.Loggers._
 
   def main(args: Array[String]) {
-    val chain = stdOutLogger
-      .andThen(emailLogger)
-      .andThen(stdErrLogger)
+    val chain = stdOutLogger andThen emailLogger andThen stdErrLogger
 
     chain(Event("Entering function y.", DEBUG))
     chain(Event("Step1 completed.", NOTICE))
