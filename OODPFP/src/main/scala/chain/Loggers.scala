@@ -9,15 +9,15 @@ object Loggers {
 
   type Logger = Event => Event
 
-  val stdOutLogger: Logger = event => handleEvent(event, DEBUG) {
+  def stdOutLogger(mask: Int): Logger = event => handleEvent(event, mask) {
     println(s"Writing to stdout: ${event.message}")
   }
 
-  val emailLogger: Logger = event => handleEvent(event, NOTICE) {
+  def emailLogger(mask: Int): Logger = event => handleEvent(event, mask) {
     println(s"Sending via e-mail: ${event.message}")
   }
 
-  val stdErrLogger: Logger = event => handleEvent(event, ERR) {
+  def stdErrLogger(mask: Int): Logger = event => handleEvent(event, mask) {
     System.err.println(s"Sending to stderr: ${event.message}")
   }
 
@@ -32,7 +32,7 @@ object ChainRunner {
   import chain.Loggers._
 
   def main(args: Array[String]) {
-    val chain = stdOutLogger andThen emailLogger andThen stdErrLogger
+    val chain = stdOutLogger(DEBUG) andThen emailLogger(NOTICE) andThen stdErrLogger(ERR)
 
     chain(Event("Entering function y.", DEBUG))
     chain(Event("Step1 completed.", NOTICE))
