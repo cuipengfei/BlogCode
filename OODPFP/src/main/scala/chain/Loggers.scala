@@ -21,8 +21,8 @@ object Loggers {
     System.err.println(s"Sending to stderr: ${event.message}")
   }
 
-  private def handleEvent(event: Event, expectedPriority: Int)(handler: => Unit) = {
-    if (event.priority <= expectedPriority) handler
+  private def handleEvent(event: Event, mask: Int)(handler: => Unit) = {
+    if (event.priority <= mask) handler
     event
   }
 }
