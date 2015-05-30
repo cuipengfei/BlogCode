@@ -1,8 +1,5 @@
 package chainofresponsibility;
 
-/**
- * Created by pfcui on 5/29/15.
- */
 class StdoutLogger extends Logger {
     public StdoutLogger(int mask) {
         super(mask);
