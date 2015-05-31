@@ -11,7 +11,6 @@ import command.commands.*;
 public class RemoteLoader {
 
     public static void main(String[] args) {
-
         RemoteControl remoteControl = new RemoteControl();
 
         Light light = new Light("Living Room");
