@@ -1,4 +1,4 @@
-package commandJ.party;
+package command;
 
 public class CeilingFan {
     public static final int HIGH = 3;

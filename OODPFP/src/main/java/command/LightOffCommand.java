@@ -1,9 +1,9 @@
-package commandJ.party;
+package command;
 
-public class LivingroomLightOffCommand implements Command {
+public class LightOffCommand implements Command {
     Light light;
 
-    public LivingroomLightOffCommand(Light light) {
+    public LightOffCommand(Light light) {
         this.light = light;
     }
 

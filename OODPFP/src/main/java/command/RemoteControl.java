@@ -1,4 +1,4 @@
-package commandJ.party;
+package command;
 
 //
 // This is the invoker

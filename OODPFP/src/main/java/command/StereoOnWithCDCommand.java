@@ -1,4 +1,4 @@
-package commandJ.party;
+package command;
 
 public class StereoOnWithCDCommand implements Command {
     Stereo stereo;
