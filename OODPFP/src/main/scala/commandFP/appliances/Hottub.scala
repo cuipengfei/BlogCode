@@ -1,13 +1,13 @@
 package commandFP.appliances
 
-case class Hottub(var on: Boolean = false) {
+case class Hottub(var isOn: Boolean = false) {
   private var temperature: Int = 0
 
-  def turnOn() = on = true
+  def on() = isOn = true
 
-  def off() = on = false
+  def off() = isOn = false
 
-  def circulate() = if (on) println("Hottub is bubbling!")
+  def circulate() = if (isOn) println("Hottub is bubbling!")
 
   def setTemperature(temperature: Int) = {
     if (temperature > this.temperature) {
