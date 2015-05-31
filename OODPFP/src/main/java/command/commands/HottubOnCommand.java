@@ -16,7 +16,4 @@ public class HottubOnCommand implements Command {
         hottub.circulate();
     }
 
-    public void undo() {
-        hottub.off();
-    }
 }

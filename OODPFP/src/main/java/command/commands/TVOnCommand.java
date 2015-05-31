@@ -14,8 +14,4 @@ public class TVOnCommand implements Command {
         tv.on();
         tv.setInputChannel();
     }
-
-    public void undo() {
-        tv.off();
-    }
 }
