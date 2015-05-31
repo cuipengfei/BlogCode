@@ -1,4 +1,7 @@
-package command;
+package command.commands;
+
+import command.Command;
+import command.appliances.Light;
 
 public class LightOffCommand implements Command {
     Light light;

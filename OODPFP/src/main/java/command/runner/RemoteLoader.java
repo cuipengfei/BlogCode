@@ -1,4 +1,12 @@
-package command;
+package command.runner;
+
+import command.Command;
+import command.MacroCommand;
+import command.appliances.Hottub;
+import command.appliances.Light;
+import command.appliances.Stereo;
+import command.appliances.TV;
+import command.commands.*;
 
 public class RemoteLoader {
 

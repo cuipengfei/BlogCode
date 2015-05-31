@@ -1,4 +1,7 @@
-package command;
+package command.commands;
+
+import command.Command;
+import command.appliances.Hottub;
 
 public class HottubOnCommand implements Command {
     Hottub hottub;

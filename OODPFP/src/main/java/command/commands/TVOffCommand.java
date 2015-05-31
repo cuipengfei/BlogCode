@@ -1,4 +1,7 @@
-package command;
+package command.commands;
+
+import command.Command;
+import command.appliances.TV;
 
 public class TVOffCommand implements Command {
     TV tv;

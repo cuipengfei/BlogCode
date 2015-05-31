@@ -1,4 +1,4 @@
-package command;
+package command.appliances;
 
 public class TV {
     String location;

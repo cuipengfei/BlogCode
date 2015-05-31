@@ -1,4 +1,7 @@
-package command;
+package command.commands;
+
+import command.Command;
+import command.appliances.Stereo;
 
 public class StereoOnCommand implements Command {
     Stereo stereo;
