@@ -31,6 +31,6 @@ object Commands {
     hottub.off()
   }
 
-  def macroCommand(commands: Seq[Command]): Command = () =>
+  def macroCommand(commands: Command*): Command = () =>
     commands.foreach(command => command())
 }
