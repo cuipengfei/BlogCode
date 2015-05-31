@@ -21,18 +21,6 @@ public class Hottub {
         }
     }
 
-    public void jetsOn() {
-        if (on) {
-            System.out.println("Hottub jets are on");
-        }
-    }
-
-    public void jetsOff() {
-        if (on) {
-            System.out.println("Hottub jets are off");
-        }
-    }
-
     public void setTemperature(int temperature) {
         if (temperature > this.temperature) {
             System.out.println("Hottub is heating to a steaming " + temperature + " degrees");
