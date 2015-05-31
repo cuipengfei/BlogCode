@@ -3,9 +3,6 @@ package command.runner;
 import command.Command;
 import command.NoCommand;
 
-//
-// This is the invoker
-//
 public class RemoteControl {
     Command[] onCommands;
     Command[] offCommands;
