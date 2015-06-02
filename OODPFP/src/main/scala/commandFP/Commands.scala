@@ -1,24 +1,14 @@
 package commandFP
 
-import commandFP.appliances.{Hottub, Light, Stereo, TV}
+import commandFP.appliances.{Hottub, TV}
 
 object Commands {
   type Command = () => Unit
-
-  def lightOn(light: Light): Command = () => light.on()
-
-  def lightOff(light: Light): Command = () => light.off()
 
   def tvOn(tv: TV): Command = () => {
     tv.on()
     tv.setInputChannel()
   }
-
-  def tvOff(tv: TV): Command = () => tv.off()
-
-  def stereoOn(stereo: Stereo): Command = () => stereo.on()
-
-  def stereoOff(stereo: Stereo): Command = () => stereo.off()
 
   def hottubOn(hottub: Hottub): Command = () => {
     hottub.on()
