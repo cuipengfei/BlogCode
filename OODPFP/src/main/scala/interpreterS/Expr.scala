@@ -21,13 +21,8 @@ object ExprEval {
   }
 
   def main(args: Array[String]) {
-    val context = Map(
-      ("w", Number(5)),
-      ("x", Number(10)),
-      ("z", Number(42)))
-
-    val expr = Plus(Var("w"), new Minus(new Var("x"), new Var("z")))
-
+    val context = Map("w" -> Number(5), "x" -> Number(10), "z" -> Number(42))
+    val expr = Plus(Var("w"), Minus(Var("x"), Var("z")))
     println(eval(expr, context))
   }
 }
