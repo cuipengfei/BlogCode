@@ -5,14 +5,15 @@ import java.util.Map;
 
 public class InterpreterExample {
     public static void main(String[] args) {
-        Map<String, Expression> variables = new HashMap<>();
-        variables.put("w", new Number(5));
-        variables.put("x", new Number(10));
-        variables.put("z", new Number(42));
+        Map<String, Expression> context = new HashMap<>();
+        context.put("w", new Number(5));
+        context.put("x", new Number(10));
+        context.put("z", new Number(42));
 
-        Evaluator sentence = new Evaluator("w x z - +");
-        int result = sentence.interpret(variables);
+        Plus expr = new Plus(new Variable("w"),
+                new Minus(new Variable("x"),
+                        new Variable("z")));
 
-        System.out.println(result);
+        System.out.println(expr.interpret(context));
     }
 }
