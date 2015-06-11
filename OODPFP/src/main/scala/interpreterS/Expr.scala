@@ -1,5 +1,3 @@
-package interpreterS
-
 trait Expr
 
 case class Plus(left: Expr, right: Expr) extends Expr
@@ -15,8 +13,8 @@ object ExprEval {
     expr match {
       case Plus(l, r) => eval(l, context) + eval(r, context)
       case Minus(l, r) => eval(l, context) - eval(r, context)
-      case Number(n) => n
       case Var(name) => eval(context(name), context)
+      case Number(n) => n
     }
   }
 
