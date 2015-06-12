@@ -4,14 +4,10 @@ package observerJ;
 import java.util.ArrayList;
 
 public class WeatherData implements Subject {
-    private ArrayList observers;
+    private ArrayList<Observer> observers = new ArrayList<>();
     private float temperature;
     private float humidity;
     private float pressure;
-
-    public WeatherData() {
-        observers = new ArrayList();
-    }
 
     public void registerObserver(Observer o) {
         observers.add(o);
@@ -25,14 +21,9 @@ public class WeatherData implements Subject {
     }
 
     public void notifyObservers() {
-        for (int i = 0; i < observers.size(); i++) {
-            Observer observer = (Observer) observers.get(i);
+        for (Observer observer : observers) {
             observer.update(temperature, humidity, pressure);
         }
-    }
-
-    public void measurementsChanged() {
-        notifyObservers();
     }
 
     public void setMeasurements(float temperature, float humidity, float pressure) {
@@ -42,15 +33,7 @@ public class WeatherData implements Subject {
         measurementsChanged();
     }
 
-    public float getTemperature() {
-        return temperature;
-    }
-
-    public float getHumidity() {
-        return humidity;
-    }
-
-    public float getPressure() {
-        return pressure;
+    private void measurementsChanged() {
+        notifyObservers();
     }
 }
