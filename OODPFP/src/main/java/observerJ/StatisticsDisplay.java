@@ -1,8 +1,5 @@
 package observerJ;
 
-import java.util.*;
-import java.util.Observer;
-
 public class StatisticsDisplay implements Observer, DisplayElement {
 	private float maxTemp = 0.0f;
 	private float minTemp = 200;
