@@ -13,13 +13,6 @@ public class WeatherData implements Subject {
         observers.add(o);
     }
 
-    public void removeObserver(Observer o) {
-        int i = observers.indexOf(o);
-        if (i >= 0) {
-            observers.remove(i);
-        }
-    }
-
     public void notifyObservers() {
         for (Observer observer : observers) {
             observer.update(temperature, humidity, pressure);
@@ -30,10 +23,6 @@ public class WeatherData implements Subject {
         this.temperature = temperature;
         this.humidity = humidity;
         this.pressure = pressure;
-        measurementsChanged();
-    }
-
-    private void measurementsChanged() {
         notifyObservers();
     }
 }
