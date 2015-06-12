@@ -1,6 +1,6 @@
 package observerJ;
 
-public class StatisticsDisplay implements Observer, DisplayElement {
+public class StatisticsDisplay implements Observer {
     private float maxTemp = 0.0f;
     private float minTemp = 200;
     private float tempSum = 0.0f;
@@ -22,10 +22,6 @@ public class StatisticsDisplay implements Observer, DisplayElement {
             minTemp = temp;
         }
 
-        display();
-    }
-
-    public void display() {
         System.out.println("Avg/Max/Min temperature = " + (tempSum / numReadings)
                 + "/" + maxTemp + "/" + minTemp);
     }

@@ -1,6 +1,6 @@
 package observerJ;
 
-public class ForecastDisplay implements Observer, DisplayElement {
+public class ForecastDisplay implements Observer {
     private float currentPressure = 29.92f;
     private float lastPressure;
 
@@ -12,10 +12,6 @@ public class ForecastDisplay implements Observer, DisplayElement {
         lastPressure = currentPressure;
         currentPressure = pressure;
 
-        display();
-    }
-
-    public void display() {
         System.out.print("Forecast: ");
         if (currentPressure > lastPressure) {
             System.out.println("Improving weather on the way!");
@@ -25,4 +21,5 @@ public class ForecastDisplay implements Observer, DisplayElement {
             System.out.println("Watch out for cooler, rainy weather");
         }
     }
+
 }
