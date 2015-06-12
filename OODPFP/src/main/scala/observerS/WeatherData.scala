@@ -26,17 +26,17 @@ object Observers {
     weatherData => {
       history += weatherData
       println(s"Avg/Max/Min temperature = " +
-        s"${history.maxBy(_.temperature).temperature}" +
-        s"/${history.minBy(_.temperature).temperature}" +
-        s"/${history.map(_.temperature).sum / history.size}")
+        s"${history.map(_.temperature).sum / history.size}" +
+        s"/${history.maxBy(_.temperature).temperature}" +
+        s"/${history.minBy(_.temperature).temperature}")
     }
 
   def forecastDisplay(history: mutable.Buffer[WeatherData] = mutable.Buffer(WeatherData(29.92f, 0, 0))): Observer =
     weatherData => {
       history += weatherData
 
-      val currentPressure = history.last.temperature
-      val lastPressure = history(history.size - 2).temperature
+      val currentPressure = history.last.pressure
+      val lastPressure = history(history.size - 2).pressure
 
       print("Forecast: ")
       if (currentPressure > lastPressure) println("Improving weather on the way!")
