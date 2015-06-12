@@ -21,5 +21,4 @@ public class ForecastDisplay implements Observer {
             System.out.println("Watch out for cooler, rainy weather");
         }
     }
-
 }
