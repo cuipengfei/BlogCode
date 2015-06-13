@@ -1,8 +1,10 @@
 package observerS
 
-import observerS.Observers.Observer
+import observerS.Observers._
 
-case class WeatherData(temperature: Float = 0, humidity: Float = 0, pressure: Float = 0,
+case class WeatherData(temperature: Float = 0,
+                       humidity: Float = 0,
+                       pressure: Float = 0,
                        observers: Seq[Observer] = Nil,
                        history: Seq[WeatherData] = Seq(WeatherData(history = Nil))) {
 
@@ -39,7 +41,9 @@ object Observers {
     else if (currentPressure == lastPressure) println("More of the same")
     else if (currentPressure < lastPressure) println("Watch out for cooler, rainy weather")
   }
+}
 
+object WeatherStation {
   def main(args: Array[String]) {
     val weatherData = WeatherData()
       .register(currentConditionsDisplay)
