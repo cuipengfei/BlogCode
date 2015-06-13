@@ -2,57 +2,53 @@ package observerS
 
 import observerS.Observers.Observer
 
-import scala.collection.mutable
-
-case class WeatherData(temperature: Float, humidity: Float, pressure: Float) {
-  var observers: Seq[Observer] = Nil
+case class WeatherData(temperature: Float = 0, humidity: Float = 0, pressure: Float = 0,
+                       observers: Seq[Observer] = Nil,
+                       history: Seq[WeatherData] = Seq(WeatherData(history = Nil))) {
 
   def register(observer: Observer) =
-    observers = observers :+ observer
+    this.copy(temperature, humidity, pressure, observers :+ observer, history)
 
-  def weatherChanged(weatherData: WeatherData) =
-    observers.foreach(observer => observer(weatherData))
+  def weatherChanged(weatherData: WeatherData) = {
+    val newHistory = history :+ weatherData
+    observers.foreach(observer => observer(newHistory))
+    this.copy(temperature, humidity, pressure, observers, newHistory)
+  }
 }
 
 object Observers {
-  type Observer = WeatherData => Unit
+  type Observer = Seq[WeatherData] => Unit
 
-  val currentConditionsDisplay: Observer = weatherData =>
+  val currentConditionsDisplay: Observer = history =>
     println(s"Current conditions: " +
-      s"${weatherData.temperature} F degrees and " +
-      s"${weatherData.humidity} % humidity")
+      s"${history.last.temperature} F degrees and " +
+      s"${history.last.humidity} % humidity")
 
-  def statisticsDisplay(history: mutable.Buffer[WeatherData] = mutable.Buffer()): Observer =
-    weatherData => {
-      history += weatherData
-      println(s"Avg/Max/Min temperature = " +
-        s"${history.map(_.temperature).sum / history.size}" +
-        s"/${history.maxBy(_.temperature).temperature}" +
-        s"/${history.minBy(_.temperature).temperature}")
-    }
+  val statisticsDisplay: Observer = history =>
+    println(s"Avg/Max/Min temperature = " +
+      s"${history.map(_.temperature).sum / history.size}" +
+      s"/${history.map(_.temperature).max}" +
+      s"/${history.map(_.temperature).max}")
 
-  def forecastDisplay(history: mutable.Buffer[WeatherData] = mutable.Buffer(WeatherData(29.92f, 0, 0))): Observer =
-    weatherData => {
-      history += weatherData
+  val forecastDisplay: Observer = history => {
+    val currentPressure = history.last.pressure
+    val lastPressure = history.dropRight(1).last.pressure
 
-      val currentPressure = history.last.pressure
-      val lastPressure = history(history.size - 2).pressure
-
-      print("Forecast: ")
-      if (currentPressure > lastPressure) println("Improving weather on the way!")
-      else if (currentPressure == lastPressure) println("More of the same")
-      else if (currentPressure < lastPressure) println("Watch out for cooler, rainy weather")
-    }
+    print("Forecast: ")
+    if (currentPressure > lastPressure) println("Improving weather on the way!")
+    else if (currentPressure == lastPressure) println("More of the same")
+    else if (currentPressure < lastPressure) println("Watch out for cooler, rainy weather")
+  }
 
   def main(args: Array[String]) {
-    val weatherData = new WeatherData(0, 0, 0)
+    val weatherData = WeatherData()
+      .register(currentConditionsDisplay)
+      .register(statisticsDisplay)
+      .register(forecastDisplay)
 
-    weatherData.register(currentConditionsDisplay)
-    weatherData.register(statisticsDisplay())
-    weatherData.register(forecastDisplay())
-
-    weatherData.weatherChanged(WeatherData(80, 65, 30.4f))
-    weatherData.weatherChanged(WeatherData(82, 70, 29.2f))
-    weatherData.weatherChanged(WeatherData(78, 90, 29.2f))
+    weatherData
+      .weatherChanged(WeatherData(80, 65, 30.4f))
+      .weatherChanged(WeatherData(82, 70, 29.2f))
+      .weatherChanged(WeatherData(78, 90, 29.2f))
   }
 }
