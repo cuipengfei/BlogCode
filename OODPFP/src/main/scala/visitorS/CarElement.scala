@@ -2,7 +2,9 @@ package visitorS
 
 import visitorS.Visitors._
 
-trait CarElement
+trait CarElement {
+  def accept(visitor: Visitor) = visitor(this)
+}
 
 case class Body() extends CarElement
 
@@ -11,12 +13,15 @@ case class Engine() extends CarElement
 case class Wheel(name: String) extends CarElement
 
 case class Car() extends CarElement {
-  val elements = Seq(
+  val elements: Seq[CarElement] = Seq(
     Wheel("front left"), Wheel("front right"),
     Wheel("back left"), Wheel("back right"),
-    Body(), Engine(), this)
+    Body(), Engine())
 
-  def accept(visitor: Visitor) = elements.foreach(visitor(_))
+  override def accept(visitor: Visitor) = {
+    elements.foreach(_.accept(visitor))
+    visitor(this)
+  }
 }
 
 object Visitors {
