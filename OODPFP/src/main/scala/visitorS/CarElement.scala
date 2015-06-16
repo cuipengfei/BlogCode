@@ -1,6 +1,6 @@
 package visitorS
 
-import visitorS.Visitors.{Visitor, printVisitor}
+import visitorS.Visitors._
 
 trait CarElement
 
@@ -28,11 +28,19 @@ object Visitors {
     case Engine() => println("Visiting Engine")
     case Car() => println("Visiting Car")
   }
+
+  val doVisitor: Visitor = {
+    case Wheel(name) => println(s"Kicking my $name wheel")
+    case Body() => println("Moving my body")
+    case Engine() => println("Starting my engine")
+    case Car() => println("Starting my car")
+  }
 }
 
 object VisitorDemo {
   def main(args: Array[String]) {
     val car = Car()
     car.accept(printVisitor)
+    car.accept(doVisitor)
   }
 }
