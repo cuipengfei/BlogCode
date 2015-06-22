@@ -1,66 +1,66 @@
 package stateS
 
 trait State {
-  def insertQuarter(gumballMachine: GumballMachine): GumballMachine
+  def insertQuarter(implicit gumballMachine: GumballMachine): GumballMachine
 
-  def ejectQuarter(gumballMachine: GumballMachine): GumballMachine
+  def ejectQuarter(implicit gumballMachine: GumballMachine): GumballMachine
 
-  def turnCrank(gumballMachine: GumballMachine): GumballMachine
+  def turnCrank(implicit gumballMachine: GumballMachine): GumballMachine
 
-  def dispense(gumballMachine: GumballMachine): GumballMachine
+  def dispense(implicit gumballMachine: GumballMachine): GumballMachine
 }
 
 case object NoQuarterState extends State {
-  override def insertQuarter(gumballMachine: GumballMachine) = {
+  override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("You inserted a quarter")
     gumballMachine.copy(state = HasQuarterState)
   }
 
-  override def dispense(gumballMachine: GumballMachine) = {
+  override def dispense(implicit gumballMachine: GumballMachine) = {
     println("You need to pay first")
     gumballMachine
   }
 
-  override def ejectQuarter(gumballMachine: GumballMachine) = {
+  override def ejectQuarter(implicit gumballMachine: GumballMachine) = {
     println("You haven't inserted a quarter")
     gumballMachine
   }
 
-  override def turnCrank(gumballMachine: GumballMachine) = {
+  override def turnCrank(implicit gumballMachine: GumballMachine) = {
     println("You turned, but there's no quarter")
     gumballMachine
   }
 }
 
 case object HasQuarterState extends State {
-  override def insertQuarter(gumballMachine: GumballMachine) = {
+  override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("You can't insert another quarter")
     gumballMachine
   }
 
-  override def dispense(gumballMachine: GumballMachine) = {
+  override def dispense(implicit gumballMachine: GumballMachine) = {
     println("No gumball dispensed")
     gumballMachine
   }
 
-  override def ejectQuarter(gumballMachine: GumballMachine) = {
+  override def ejectQuarter(implicit gumballMachine: GumballMachine) = {
     println("Quarter returned")
     gumballMachine.copy(state = NoQuarterState)
   }
 
-  override def turnCrank(gumballMachine: GumballMachine) = {
+  override def turnCrank(implicit gumballMachine: GumballMachine) = {
     println("You turned...")
     gumballMachine.copy(state = SoldState)
   }
 }
 
 case object SoldState extends State {
-  override def insertQuarter(gumballMachine: GumballMachine) = {
+  override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("Please wait, we're already giving you a gumball")
     gumballMachine
   }
 
-  override def dispense(gumballMachine: GumballMachine) = {
+  override def dispense(implicit gumballMachine: GumballMachine) = {
     val releasedMachine = gumballMachine.releaseBall
     if (releasedMachine.numberGumBalls > 0)
       releasedMachine.copy(state = NoQuarterState)
@@ -70,51 +70,53 @@ case object SoldState extends State {
     }
   }
 
-  override def ejectQuarter(gumballMachine: GumballMachine) = {
+  override def ejectQuarter(implicit gumballMachine: GumballMachine) = {
     println("Sorry, you already turned the crank")
     gumballMachine
   }
 
-  override def turnCrank(gumballMachine: GumballMachine) = {
+  override def turnCrank(implicit gumballMachine: GumballMachine) = {
     println("Turning twice doesn't get you another gumball!")
     gumballMachine
   }
 }
 
 case object SoldOutState extends State {
-  override def insertQuarter(gumballMachine: GumballMachine) = {
+  override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("You can't insert a quarter, the machine is sold out")
     gumballMachine
   }
 
-  override def dispense(gumballMachine: GumballMachine) = {
+  override def dispense(implicit gumballMachine: GumballMachine) = {
     println("No gumball dispensed")
     gumballMachine
   }
 
-  override def ejectQuarter(gumballMachine: GumballMachine) = {
+  override def ejectQuarter(implicit gumballMachine: GumballMachine) = {
     println("You can't eject, you haven't inserted a quarter yet")
     gumballMachine
   }
 
-  override def turnCrank(gumballMachine: GumballMachine) = {
+  override def turnCrank(implicit gumballMachine: GumballMachine) = {
     println("You turned, but there are no gumballs")
     gumballMachine
   }
 }
 
 case class GumballMachine(state: State, numberGumBalls: Int) {
+  implicit val machine: GumballMachine = this
+
   def releaseBall = {
     println("A gumball comes rolling out the slot...")
     if (numberGumBalls != 0) this.copy(numberGumBalls = numberGumBalls - 1)
     else this
   }
 
-  def insertQuarter = state.insertQuarter(this)
+  def insertQuarter = state.insertQuarter
 
-  def ejectQuarter = state.ejectQuarter(this)
+  def ejectQuarter = state.ejectQuarter
 
-  def turnCrank = state.turnCrank(this).state.dispense(this)
+  def turnCrank = state.turnCrank.state.dispense
 
   def refill(count: Int) = GumballMachine(NoQuarterState, count)
 }
