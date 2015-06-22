@@ -103,7 +103,7 @@ case object SoldOutState extends State {
   }
 }
 
-case class GumballMachine(state: State, numberGumBalls: Int) {
+case class GumballMachine(private val state: State, numberGumBalls: Int) {
   implicit val machine: GumballMachine = this
 
   def releaseBall = {
