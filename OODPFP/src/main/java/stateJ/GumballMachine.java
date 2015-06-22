@@ -49,10 +49,6 @@ public class GumballMachine {
         state = noQuarterState;
     }
 
-    public State getState() {
-        return state;
-    }
-
     public State getSoldOutState() {
         return soldOutState;
     }
@@ -70,15 +66,15 @@ public class GumballMachine {
     }
 
     public String toString() {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         result.append("\nMighty Gumball, Inc.");
         result.append("\nJava-enabled Standing Gumball Model #2004");
-        result.append("\nInventory: " + count + " gumball");
+        result.append("\nInventory: ").append(count).append(" gumball");
         if (count != 1) {
             result.append("s");
         }
         result.append("\n");
-        result.append("Machine is " + state + "\n");
+        result.append("Machine is ").append(state).append("\n");
         return result.toString();
     }
 }
