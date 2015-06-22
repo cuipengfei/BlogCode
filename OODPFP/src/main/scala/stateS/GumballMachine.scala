@@ -10,7 +10,7 @@ trait State {
   def dispense(implicit gumballMachine: GumballMachine): GumballMachine
 }
 
-case object NoQuarterState extends State {
+object NoQuarterState extends State {
   override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("You inserted a quarter")
     gumballMachine.copy(state = HasQuarterState)
@@ -32,7 +32,7 @@ case object NoQuarterState extends State {
   }
 }
 
-case object HasQuarterState extends State {
+object HasQuarterState extends State {
   override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("You can't insert another quarter")
     gumballMachine
@@ -54,7 +54,7 @@ case object HasQuarterState extends State {
   }
 }
 
-case object SoldState extends State {
+object SoldState extends State {
   override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("Please wait, we're already giving you a gumball")
     gumballMachine
@@ -81,7 +81,7 @@ case object SoldState extends State {
   }
 }
 
-case object SoldOutState extends State {
+object SoldOutState extends State {
   override def insertQuarter(implicit gumballMachine: GumballMachine) = {
     println("You can't insert a quarter, the machine is sold out")
     gumballMachine
