@@ -1,21 +1,15 @@
 package stateJ;
 
 public class GumballMachine {
+    private State soldOutState = new SoldOutState();
+    private State noQuarterState = new NoQuarterState(this);
+    private State hasQuarterState = new HasQuarterState(this);
+    private State soldState = new SoldState(this);
 
-    State soldOutState;
-    State noQuarterState;
-    State hasQuarterState;
-    State soldState;
-
-    State state = soldOutState;
-    int count = 0;
+    private State state = soldOutState;
+    private int count = 0;
 
     public GumballMachine(int numberGumballs) {
-        soldOutState = new SoldOutState(this);
-        noQuarterState = new NoQuarterState(this);
-        hasQuarterState = new HasQuarterState(this);
-        soldState = new SoldState(this);
-
         this.count = numberGumballs;
         if (numberGumballs > 0) {
             state = noQuarterState;

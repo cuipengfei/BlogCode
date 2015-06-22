@@ -2,7 +2,7 @@ package stateJ;
 
 public class SoldState implements State {
 
-    GumballMachine gumballMachine;
+    private GumballMachine gumballMachine;
 
     public SoldState(GumballMachine gumballMachine) {
         this.gumballMachine = gumballMachine;

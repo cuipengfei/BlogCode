@@ -1,7 +1,7 @@
 package stateJ;
 
 public class HasQuarterState implements State {
-    GumballMachine gumballMachine;
+    private GumballMachine gumballMachine;
 
     public HasQuarterState(GumballMachine gumballMachine) {
         this.gumballMachine = gumballMachine;

@@ -1,12 +1,11 @@
 package stateJ;
 
 public interface State {
+    void insertQuarter();
 
-    public void insertQuarter();
+    void ejectQuarter();
 
-    public void ejectQuarter();
+    void turnCrank();
 
-    public void turnCrank();
-
-    public void dispense();
+    void dispense();
 }
