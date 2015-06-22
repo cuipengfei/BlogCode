@@ -17,8 +17,4 @@ public class SoldOutState implements State {
     public void dispense() {
         System.out.println("No gumball dispensed");
     }
-
-    public String toString() {
-        return "sold out";
-    }
 }
