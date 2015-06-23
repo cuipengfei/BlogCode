@@ -15,7 +15,14 @@ object LearnZ {
     def mzero: Int = 0
   }
 
+  implicit val stringMonoid: Monoid[String] = new Monoid[String] {
+    def mappend(a: String, b: String): String = a + b
+
+    def mzero: String = ""
+  }
+
   def main(args: Array[String]) {
     println(sum(List(1, 2, 3, 4)))
+    println(sum(List("a", "b", "c")))
   }
 }
