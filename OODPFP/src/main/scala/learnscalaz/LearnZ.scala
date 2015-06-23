@@ -16,6 +16,6 @@ object LearnZ {
   }
 
   def main(args: Array[String]) {
-    sum(List(1, 2, 3, 4), intMonoid)
+    println(sum(List(1, 2, 3, 4), intMonoid))
   }
 }
