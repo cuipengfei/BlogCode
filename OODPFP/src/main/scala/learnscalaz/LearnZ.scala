@@ -1,7 +1,14 @@
 package learnscalaz
 
 object LearnZ {
-  def sum[A](xs: List[A])(implicit m: Monoid[A]): A = xs.foldLeft(m.mzero)(m.mappend)
+
+  object FoldLeftList {
+    def foldLeft[A, B](xs: List[A], b: B, f: (B, A) => B) =
+      xs.foldLeft(b)(f)
+  }
+
+  def sum[A](xs: List[A])(implicit m: Monoid[A]): A =
+    FoldLeftList.foldLeft(xs, m.mzero, m.mappend)
 
   trait Monoid[A] {
     def mappend(a1: A, a2: A): A
