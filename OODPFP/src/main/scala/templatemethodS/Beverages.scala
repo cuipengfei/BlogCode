@@ -5,13 +5,13 @@ object Beverages {
   type AddCondiments = () => Unit
   type CaffeineBeverage = () => Unit
 
-  def caffeineBeverageWith(brew: Brew, addCondiments: AddCondiments): CaffeineBeverage =
-    () => {
-      boilWater()
-      brew()
-      pourInCup()
-      addCondiments()
-    }
+  def caffeineBeverageWith(brew: Brew, addCondiments: AddCondiments)
+  : CaffeineBeverage = () => {
+    boilWater()
+    brew()
+    pourInCup()
+    addCondiments()
+  }
 
   val brewCoffee: Brew = () => println("Dripping Coffee through filter")
   val addMilkSugar: AddCondiments = () => println("Adding Sugar and Milk")
