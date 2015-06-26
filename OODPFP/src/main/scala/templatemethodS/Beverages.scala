@@ -18,13 +18,9 @@ object Beverages {
   val brewTea: Brew = () => println("Steeping the tea")
   val addLemon: AddCondiments = () => println("Adding Lemon")
 
-  private def boilWater() = {
-    println("Boiling water")
-  }
+  private def boilWater() = println("Boiling water")
 
-  private def pourInCup() = {
-    println("Pouring into cup")
-  }
+  private def pourInCup() = println("Pouring into cup")
 
   def main(args: Array[String]) {
     val coffee: CaffeineBeverage = caffeineBeverageWith(brewCoffee, addMilkSugar)
