@@ -24,9 +24,8 @@ object Beverages {
 
   def main(args: Array[String]) {
     val coffee: CaffeineBeverage = caffeineBeverageWith(brewCoffee, addMilkSugar)
-    coffee()
-
     val tea: CaffeineBeverage = caffeineBeverageWith(brewTea, addLemon)
+    coffee()
     tea()
   }
 }
