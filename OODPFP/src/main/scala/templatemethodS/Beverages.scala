@@ -5,8 +5,7 @@ object Beverages {
   type AddCondiments = () => Unit
   type CaffeineBeverage = () => Unit
 
-  def caffeineBeverageWith(brew: Brew, addCondiments: AddCondiments)
-  : CaffeineBeverage = () => {
+  def caffeineBeverageWith(brew: Brew, addCondiments: AddCondiments): CaffeineBeverage = () => {
     boilWater()
     brew()
     pourInCup()
