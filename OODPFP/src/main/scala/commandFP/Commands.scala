@@ -5,22 +5,22 @@ import commandFP.appliances.{Hottub, TV}
 object Commands {
   type Command = () => Unit
 
-  def tvOn(tv: TV): Command = () => {
+  def tvOn(tv: TV)() = {
     tv.on()
     tv.setInputChannel()
   }
 
-  def hottubOn(hottub: Hottub): Command = () => {
+  def hottubOn(hottub: Hottub)() = {
     hottub.on()
     hottub.setTemperature(104)
     hottub.circulate()
   }
 
-  def hottubOff(hottub: Hottub): Command = () => {
+  def hottubOff(hottub: Hottub)() = {
     hottub.setTemperature(98)
     hottub.off()
   }
 
-  def macroCommand(commands: Command*): Command = () =>
-    commands.foreach(command => command())
+  def macroCommand(commands: Command*)() =
+    commands.foreach(_())
 }

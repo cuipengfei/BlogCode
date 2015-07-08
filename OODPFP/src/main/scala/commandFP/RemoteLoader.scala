@@ -10,10 +10,10 @@ object RemoteLoader {
     val stereo = Stereo("living room")
     val hottub = Hottub()
 
-    val on = macroCommand(light.on,
+    val on: Command = macroCommand(light.on,
       stereo.on, tvOn(tv), hottubOn(hottub))
 
-    val off = macroCommand(light.off,
+    val off: Command = macroCommand(light.off,
       stereo.off, tv.off, hottubOff(hottub))
 
     val remoteControl = RemoteControl(Seq(on), Seq(off))
