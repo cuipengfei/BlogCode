@@ -5,6 +5,8 @@ object Loggers {
   val NOTICE = 5
   val DEBUG = 7
 
+  type Logger = Event => Event
+
   case class Event(message: String, priority: Int)
 
   def stdOutLogger(mask: Int)(event: Event) = handleEvent(event, mask) {
@@ -30,8 +32,11 @@ object ChainRunner {
   import chain.Loggers._
 
   def main(args: Array[String]) {
-    val chain = stdOutLogger(DEBUG) andThen emailLogger(NOTICE) andThen stdErrLogger(ERR)
+    val std: Logger = stdOutLogger(DEBUG)
+    val email: Logger = emailLogger(NOTICE)
+    val err: Logger = stdErrLogger(ERR)
 
+    val chain = std andThen email andThen err
     chain(Event("Entering function y.", DEBUG))
     chain(Event("Step1 completed.", NOTICE))
     chain(Event("An error has occurred.", ERR))
