@@ -7,17 +7,15 @@ object Loggers {
 
   case class Event(message: String, priority: Int)
 
-  type Logger = Event => Event
-
-  def stdOutLogger(mask: Int): Logger = event => handleEvent(event, mask) {
+  def stdOutLogger(mask: Int)(event: Event) = handleEvent(event, mask) {
     println(s"Writing to stdout: ${event.message}")
   }
 
-  def emailLogger(mask: Int): Logger = event => handleEvent(event, mask) {
+  def emailLogger(mask: Int)(event: Event) = handleEvent(event, mask) {
     println(s"Sending via e-mail: ${event.message}")
   }
 
-  def stdErrLogger(mask: Int): Logger = event => handleEvent(event, mask) {
+  def stdErrLogger(mask: Int)(event: Event) = handleEvent(event, mask) {
     System.err.println(s"Sending to stderr: ${event.message}")
   }
 
