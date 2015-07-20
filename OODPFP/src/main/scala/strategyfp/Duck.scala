@@ -26,9 +26,7 @@ class DecoyDuck extends Duck(flyNoWay, muteQuack)
 
 object DuckSimFP {
   def main(args: Array[String]) {
-    val ducks = Seq(
-      new Duck(flyWithWings, realQuack),
-      new Duck(flyNoWay, muteQuack))
+    val ducks = Seq(new Duck(flyWithWings, realQuack), new Duck(flyNoWay, muteQuack))
 
     ducks.foreach(duck => {
       duck.fly()
