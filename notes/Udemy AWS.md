@@ -3,7 +3,7 @@ pinned: true
 tags: [aws, iam, Notebooks/AWS]
 title: Udemy AWS
 created: '2019-08-29T14:05:03.863Z'
-modified: '2019-09-04T08:04:00.062Z'
+modified: '2019-09-27T09:01:52.027Z'
 ---
 
 # Udemy AWS
@@ -13,6 +13,12 @@ modified: '2019-09-04T08:04:00.062Z'
 * How to force all IAM users to use MFA?
 
 * Relationship between key concepts of IAM. (user, group, role, policy)
+
+Roles are more secure than saving access key id and secret access key.
+Roles can be assigned to EC2.
+Roles are global, can be used in all regions.
+
+Can use roles to grant access, safer than access key id and secret key.
 
 ## S3
 
@@ -62,6 +68,17 @@ security group changes take effect immediately
 
 security group is stateful, if you create inbound rule to allowed inbound on 8080, automatically can outbound 8080 as well.
 
+## CloudWatch
+
+monitor and alarm
+
+CloudTrail, recording who did what when (api calls record)
+
+## Placement group
+
+clustered: same availability zone, close, together
+spread: kept separate from each other
+
 # EBS
 
 elastic block store
@@ -69,3 +86,17 @@ elastic block store
 ## instance store vs EBS
 
 instance store backed ec2 isntances can not be stopped, failure causes lose of data
+
+# RDS
+
+* RDS CAP?
+
+Multi AZ fail over, dns update, no need to change connection string. Used for disaster recovery.
+
+Read replica, for throuput/performance. Write to one, read from different replicas. Can be in a different region.
+
+Data warehouse for BI, AWS RedShift
+
+ElastiCache, supports redis and memcached
+
+
