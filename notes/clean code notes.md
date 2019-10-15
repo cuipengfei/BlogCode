@@ -2,7 +2,7 @@
 tags: [book notes, Notebooks/Books]
 title: clean code notes
 created: '2019-10-01T11:37:17.849Z'
-modified: '2019-10-01T11:43:14.348Z'
+modified: '2019-10-05T05:55:52.290Z'
 ---
 
 # clean code notes
@@ -20,5 +20,18 @@ modified: '2019-10-01T11:43:14.348Z'
 OOAD with applications by Grady Booch
 
 Working effectively with legacy code by Michael Feathers
+
+# 第三章 函数
+
+短
+职责单一，做一件事
+参数要少
+没有副作用
+
+# 第四章 注释
+
+注释和代码不一样，未必会被维护，很容易过期
+
+优先用代码本身表达含义，实在不行才用注释
 
 
